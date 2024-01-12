@@ -1,5 +1,5 @@
 # chatgptUI
-Simple PHP &amp; Vanilla Javascript WebUI for ChatGPT
+Simple PHP, Vanilla Javascript & CSS WebUI for ChatGPT
 
 What can it do?
 Provides a simple UI for hosting an OpenAI GPT chatbot session on your own website. Supports customisation of the initial prompts for behaviour, name and usage etc.. For example so the model will respond as "yoursite.com". 
