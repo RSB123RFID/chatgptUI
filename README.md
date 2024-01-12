@@ -16,6 +16,6 @@ Installation steps:
 3. Load chatgptUI.php in your browser, enjoy!
 
 Notes:
-For several reasons you will probably want to put this all behind a user login php function, and check that an authorised user has logged in before allowing them to use chatGPTUI. Otherwise your tokens might end up getting spent real quick once someone figures out you've left it open! Ha! 
+For several reasons you will probably want to put this all behind a user login php function, and check that an authorised user has logged in before allowing them to use chatgptUI. Otherwise your tokens might end up getting spent real quick once someone figures out you've left it open! Ha! 
 
 
