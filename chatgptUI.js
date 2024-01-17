@@ -29,7 +29,7 @@
 
 //define on load defaults
 	let myModelVariable = "gpt-3.5-turbo-1106";
-	let myModelName = "Arthur";
+	let myModelName = "bot1";
 	let myModelCustomisation = "";
 	changeModel(); //call change model to push it through
 	
@@ -113,28 +113,28 @@ async function loadChatFromFile() {
 
 	function updateBotImage(modelName, modelVersion) {
     const botImage = document.getElementById('botImage');
-    if (modelName === "Nora") {
+    if (modelName === "bot2") {
         if (modelVersion === "gpt-4-1106-preview") {
-            botImage.src = 'norabot4.png'; // Image for Nora GPT-4
+            botImage.src = 'bot2gpt4.png'; // Image for bot2 GPT-4
         } else {
-            botImage.src = 'norabot.png'; // Image for Nora GPT-3.5
+            botImage.src = 'bot2gpt3-5.png'; // Image for bot2 GPT-3.5
         }
-    } else { // Default to Arthur
+    } else { // Default to bot1
         if (modelVersion === "gpt-4-1106-preview") {
-            botImage.src = 'arthurbot4.png'; // Image for Arthur GPT-4
+            botImage.src = 'bot1gpt4.png'; // Image for bot1 GPT-4
         } else {
-            botImage.src = 'arthurbot.png'; // Image for Arthur GPT-3.5
+            botImage.src = 'bot1gpt3-5.png'; // Image for bot1 GPT-3.5
         }
     }
 }
 	
 	function changeModel(){
-	if (myModelName == "Nora"){
-		myModelCustomisation = "Example prompt:  Your name is Nora, you are a helpful chatbot interested in Motorcycles.";
+	if (myModelName == "bot2"){
+		myModelCustomisation = "Example prompt:  Your name is bot1, you are a helpful chatbot interested in Motorcycles.";
 		//console.log("Saved: ", myModelCustomisation);
 		}
-		else {
-		myModelCustomisation = "Example prompt: Your name is Arthur you are a useful bot interested in helping people on their mechanical engineering and CAD design questions.";
+		else { // Default to bot1
+		myModelCustomisation = "Example prompt: Your name is bot2 you are a useful bot interested in helping people on their mechanical engineering and CAD design questions.";
 		//	console.log("Saved: ", myModelCustomisation);
 		}
 	}
@@ -155,8 +155,8 @@ async function loadChatFromFile() {
        
 		 // Get the selected model from the form
     const selectedModel = document.getElementById('model_setting').value;
-		// get the model gender
-		myModelName = document.getElementById('gender_setting').value;
+		// get the model bot
+		myModelName = document.getElementById('bot_setting').value;
 
     // Assign selected model to myModelVariable
      myModelVariable = selectedModel;
@@ -286,7 +286,7 @@ messageElement.innerHTML = `<i class="fas fa-user-circle"></i><strong>${sender}<
             if (sender === 'Guest') {
                 messageElement.classList.add('user-message');
 				messageElement.innerHTML = `<i class="fas fa-user-circle"></i> <strong>${sender}</strong>: ${message}`;
-            } else if (sender === 'Arthur' || sender === 'Nora') {
+            } else if (sender === 'bot1' || sender === 'bot2') {
 				messageElement.innerHTML = `<i class="fa-solid fa-robot"></i> <strong>${sender}</strong>: ${message}`;
                 messageElement.classList.add('ai-message');
 

@@ -37,10 +37,10 @@
     <div class="chat_settings_modal_content">
         <span class="chat_settings_close" onclick="closeSettings()">&times;</span>
         <form id="settingsForm">
-            <label for="gender_setting">Choose your AI:</label>
-            <select id="gender_setting" name="gender_setting">
-            <option value="Arthur">Arthur</option>
-        <option value="Nora">Nora</option>
+            <label for="bot_setting">Choose your AI:</label>
+            <select id="bot_setting" name="bot_setting">
+            <option value="bot1">Bot 1</option>
+        <option value="bot2">Bot 2</option>
             </select>
             <!-- Repeat for other settings --><BR>
 			<label for="model_setting">AI Model:</label>
@@ -56,7 +56,7 @@
     </div>
 </div>
 	
-<P align="center"><img src='arthurbot.png' id="botImage" class="bot_img"></P>
+<P align="center"><img src='bot1gpt3-5.png' id="botImage" class="bot_img"></P>
 	<nav>
          <div>
          
