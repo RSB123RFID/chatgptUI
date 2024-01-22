@@ -56,7 +56,7 @@
     </div>
 </div>
 	
-<P align="center"><img src='bot1gpt3-5.png' id="botImage" class="bot_img"></P>
+<P align="center"><img src='bot1.png' id="botImage" class="bot_img"></P>
 	<nav>
          <div>
          

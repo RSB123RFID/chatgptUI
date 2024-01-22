@@ -24,15 +24,28 @@
 //SOFTWARE. 
 
 
-
+// Assuming the text files are hosted at a server and accessible via URLs
+const bot1URL = 'bot1assistantPrompt.txt';
+const bot2URL = 'bot2assistantPrompt.txt';
 
 
 //define on load defaults
 	let myModelVariable = "gpt-3.5-turbo-1106";
 	let myModelName = "bot1";
 	let myModelCustomisation = "";
-	changeModel(); //call change model to push it through
-	
+	changeModel().then(() => {
+        // Any subsequent code that depends on changeModel
+
+        chatMemory = createMemory([
+            {
+              role: "system",
+              content: myModelCustomisation
+            }	
+                
+          ]);
+
+
+    });
 	
 	//settings section functions
 	
@@ -111,33 +124,49 @@ async function loadChatFromFile() {
 	
 	
 
-	function updateBotImage(modelName, modelVersion) {
+function updateBotImage(modelName, modelVersion) {
     const botImage = document.getElementById('botImage');
     if (modelName === "bot2") {
-        if (modelVersion === "gpt-4-1106-preview") {
-            botImage.src = 'bot2gpt4.png'; // Image for bot2 GPT-4
-        } else {
-            botImage.src = 'bot2gpt3-5.png'; // Image for bot2 GPT-3.5
-        }
+      //  if (modelVersion === "SMLGPT4_32K") {
+            botImage.src = 'bot2.png'; // Image for bot2 GPT-4
+     //   } else {
+       //     botImage.src = 'bot2gpt3-5.png'; // Image for bot2 GPT-3.5
+    //    }
     } else { // Default to bot1
-        if (modelVersion === "gpt-4-1106-preview") {
-            botImage.src = 'bot1gpt4.png'; // Image for bot1 GPT-4
-        } else {
-            botImage.src = 'bot1gpt3-5.png'; // Image for bot1 GPT-3.5
-        }
+       // if (modelVersion === "SMLGPT4_32K") {
+            botImage.src = 'bot1.png'; // Image for bot1 GPT-4
+      //  } else {
+      //      botImage.src = 'bot1gpt3-5.png'; // Image for bot1 GPT-3.5
+       // }
     }
 }
 	
-	function changeModel(){
-	if (myModelName == "bot2"){
-		myModelCustomisation = "Example prompt:  Your name is bot1, you are a helpful chatbot interested in Motorcycles.";
-		//console.log("Saved: ", myModelCustomisation);
-		}
-		else { // Default to bot1
-		myModelCustomisation = "Example prompt: Your name is bot2 you are a useful bot interested in helping people on their mechanical engineering and CAD design questions.";
-		//	console.log("Saved: ", myModelCustomisation);
-		}
-	}
+async function changeModel() {
+    let fileURL;
+    
+    // Determine which file to read based on myModelName
+    if (myModelName === "bot1") {
+        fileURL = bot1URL;
+    } else if (myModelName === "bot2") {
+        fileURL = bot2URL;
+    } else {
+        console.error('Invalid model name');
+        return;
+    }
+
+    try {
+        // Await the fetch call to ensure it completes before proceeding
+        const response = await fetch(fileURL);
+        const text = await response.text();
+        
+        // Apply the customization from the text file
+        myModelCustomisation = text;
+        console.log(`Customization for ${myModelName} loaded`);
+        console.log(myModelCustomisation);
+    } catch (error) {
+        console.error('Error fetching the customization file:', error);
+    }
+}
 		
 	
 	  // JavaScript to handle modal open/close of settings box
@@ -163,10 +192,11 @@ async function loadChatFromFile() {
 		
 		console.log("Saved: ", myModelVariable);
 		 console.log("Saved: ", myModelName);
-		changeModel();
+		 clearChatMemory();
+        await changeModel();
 		   updateBotImage(myModelName, myModelVariable); 
 		// Clear existing chat memory and set the new introduction message
-    clearChatMemory();
+   
     chatMemory.push({ role: "system", content: myModelCustomisation });
 
 		 closeSettings();
