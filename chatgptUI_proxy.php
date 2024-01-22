@@ -23,7 +23,7 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-$api_key = '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'; // Ideally, store this in a more secure way such as in your db etc. 
+$api_key = 'YOUR_API_KEY'; // Ideally, store this in a more secure way such as in your db etc. 
 $api_url = 'https://api.openai.com/v1/chat/completions';
 
 // Make sure the content type is JSON
